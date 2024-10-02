@@ -3,7 +3,6 @@
 
 package com.lenyan.leetcode.editor.cn;
 
-import
 import com.lenyan.leetcode.editor.cn.model.ListNode;
 
 import java.util.HashSet;

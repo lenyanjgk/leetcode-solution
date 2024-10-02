@@ -2,7 +2,7 @@
 //2024-09-30 21:50:37
 
 package com.lenyan.leetcode.editor.cn;
-import com.lenyan.leetcode.editor.cn.model.ListNode
+import com.lenyan.leetcode.editor.cn.model.ListNode;
 
 public class AddTwoNumbers {
     public static void main(String[] args) {

@@ -47,6 +47,28 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/BinaryTreeLevelOrderTraversal.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/doc/content/BinaryTreeLevelOrderTraversal.md" />
+              <option name="frontendQuestionId" value="leetcode.cn102" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/BinaryTreeLevelOrderTraversal.java" />
+              <option name="titleSlug" value="binary-tree-level-order-traversal" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/BinaryTreeRightSideView.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/doc/content/BinaryTreeRightSideView.md" />
+              <option name="frontendQuestionId" value="leetcode.cn199" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/BinaryTreeRightSideView.java" />
+              <option name="titleSlug" value="binary-tree-right-side-view" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/CopyListWithRandomPointer.java">
           <value>
             <LeetcodeEditor>
@@ -396,6 +418,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/TwoSum.java" />
               <option name="titleSlug" value="two-sum" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/ValidateBinarySearchTree.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/doc/content/ValidateBinarySearchTree.md" />
+              <option name="frontendQuestionId" value="leetcode.cn98" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/ValidateBinarySearchTree.java" />
+              <option name="titleSlug" value="validate-binary-search-tree" />
             </LeetcodeEditor>
           </value>
         </entry>

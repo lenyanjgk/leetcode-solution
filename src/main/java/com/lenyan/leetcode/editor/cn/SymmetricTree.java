@@ -2,7 +2,7 @@
 //2024-10-03 03:15:11
 
 package com.lenyan.leetcode.editor.cn;
-import com.lenyan.leetcode.editor.cn.model.TreeNode
+import com.lenyan.leetcode.editor.cn.model.TreeNode;
 public class SymmetricTree {
     public static void main(String[] args) {
         Solution solution = new SymmetricTree().new Solution();

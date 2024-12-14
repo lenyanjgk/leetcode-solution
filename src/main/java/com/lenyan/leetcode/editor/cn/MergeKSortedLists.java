@@ -5,7 +5,6 @@ package com.lenyan.leetcode.editor.cn;
 
 import com.lenyan.leetcode.editor.cn.model.ListNode;
 
-import java.util.Deque;
 import java.util.PriorityQueue;
 import java.util.Queue;
 

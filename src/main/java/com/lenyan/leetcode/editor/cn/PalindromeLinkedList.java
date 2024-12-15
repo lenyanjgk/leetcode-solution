@@ -1,18 +1,14 @@
 //234 回文链表
-//2024-09-30 20:35:44
+//2024-12-15 20:35:44
 
   package com.lenyan.leetcode.editor.cn;
-  public class PalindromeLinkedList{
+
+import com.lenyan.leetcode.editor.cn.model.ListNode;
+
+public class PalindromeLinkedList{
       public static void main(String[] args) {
            Solution solution = new PalindromeLinkedList().new Solution();
       }
-public class ListNode {
-    int val;
-    ListNode next;
-    ListNode() {}
-    ListNode(int val) { this.val = val; }
-    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-}
 
       //leetcode submit region begin(Prohibit modification and deletion)
 /**
@@ -43,4 +39,4 @@ class Solution {
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
-  }
+}

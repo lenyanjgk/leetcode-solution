@@ -36,6 +36,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/MiddleOfTheLinkedList.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/doc/content/MiddleOfTheLinkedList.md" />
+              <option name="frontendQuestionId" value="leetcode.cn876" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/MiddleOfTheLinkedList.java" />
+              <option name="titleSlug" value="middle-of-the-linked-list" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/PartitionList.java">
           <value>
             <LeetcodeEditor>

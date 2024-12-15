@@ -91,6 +91,28 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/ReverseLinkedList.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/doc/content/ReverseLinkedList.md" />
+              <option name="frontendQuestionId" value="leetcode.cn206" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/ReverseLinkedList.java" />
+              <option name="titleSlug" value="reverse-linked-list" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/ReverseNodesInKGroup.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/doc/content/ReverseNodesInKGroup.md" />
+              <option name="frontendQuestionId" value="leetcode.cn25" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/ReverseNodesInKGroup.java" />
+              <option name="titleSlug" value="reverse-nodes-in-k-group" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/SubstringWithConcatenationOfAllWords.java">
           <value>
             <LeetcodeEditor>

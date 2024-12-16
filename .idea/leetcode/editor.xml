@@ -91,6 +91,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/RemoveDuplicatesFromSortedArray.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/doc/content/RemoveDuplicatesFromSortedArray.md" />
+              <option name="frontendQuestionId" value="leetcode.cn26" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/RemoveDuplicatesFromSortedArray.java" />
+              <option name="titleSlug" value="remove-duplicates-from-sorted-array" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/RemoveNthNodeFromEndOfList.java">
           <value>
             <LeetcodeEditor>

@@ -43,15 +43,15 @@ public class FourSum{
             return result;
         }
 
-        public static void main(String[] args) {
-            Solution solution = new Solution();
-            int[] nums = {1, 0, -1, 0, -2, 2};
-            int target = 0;
-            List<List<Integer>> results = solution.fourSum(nums, target);
-            for (List<Integer> result : results) {
-                System.out.println(result);
-            }
-        }
+//        public static void main(String[] args) {
+//            Solution solution = new Solution();
+//            int[] nums = {1, 0, -1, 0, -2, 2};
+//            int target = 0;
+//            List<List<Integer>> results = solution.fourSum(nums, target);
+//            for (List<Integer> result : results) {
+//                System.out.println(result);
+//            }
+//        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 

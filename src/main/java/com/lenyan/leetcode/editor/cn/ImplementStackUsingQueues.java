@@ -9,7 +9,7 @@ import java.util.Queue;
 
 public class ImplementStackUsingQueues{
     public static void main(String[] args) {
-        Solution solution = new ImplementStackUsingQueues().new Solution();
+        //Solution solution = new ImplementStackUsingQueues().new Solution();
     }
     
     //leetcode submit region begin(Prohibit modification and deletion)

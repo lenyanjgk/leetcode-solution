@@ -8,7 +8,7 @@ import java.util.Stack;
 
 public class ImplementQueueUsingStacks{
     public static void main(String[] args) {
-        Solution solution = new ImplementQueueUsingStacks().new Solution();
+        //Solution solution = new ImplementQueueUsingStacks().new Solution();
     }
     
     //leetcode submit region begin(Prohibit modification and deletion)

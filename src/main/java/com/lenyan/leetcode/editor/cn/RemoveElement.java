@@ -1,5 +1,5 @@
 //27 移除元素 remove-element
-//2024-12-16 14:07:10
+//2024-12-21 14:07:10
 
 package com.lenyan.leetcode.editor.cn;
 
@@ -12,13 +12,15 @@ public class RemoveElement{
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int removeElement(int[] nums, int val) {
-            int i = 0;
-            for (int num : nums) {
-                if (num != val) {
-                    nums[i++] = num;
+            // 快慢指针
+            int slowIndex = 0;
+            for (int fastIndex = 0; fastIndex < nums.length; fastIndex++) {
+                if (nums[fastIndex] != val) {
+                    nums[slowIndex] = nums[fastIndex];
+                    slowIndex++;
                 }
             }
-            return i;
+            return slowIndex;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

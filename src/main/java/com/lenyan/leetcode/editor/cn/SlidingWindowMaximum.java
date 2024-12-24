@@ -1,5 +1,5 @@
 //239 滑动窗口最大值
-//2024-09-27 10:54:59
+//2024-12/24 10:54:59
 
   package com.lenyan.leetcode.editor.cn;
 
@@ -36,4 +36,26 @@ public class SlidingWindowMaximum{
 
 //leetcode submit region end(Prohibit modification and deletion)
 
+
+    class Solution1 {
+        public int[] maxSlidingWindow(int[] nums, int k) {
+            ArrayDeque<Integer> deque = new ArrayDeque<>();
+            int len = nums.length;
+            int[] res = new int[len - k + 1];
+            int idx = 0;
+            for(int i = 0; i < len; i++) {
+                while(!deque.isEmpty() && deque.peek() < i-k+1) {
+                    deque.poll();
+                }
+                while(!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
+                    deque.pollLast();
+                }
+                deque.offer(i);
+                if(i >= k - 1) {
+                    res[idx++] = nums[deque.peek()];
+                }
+            }
+            return res;
+        }
+    }
   }

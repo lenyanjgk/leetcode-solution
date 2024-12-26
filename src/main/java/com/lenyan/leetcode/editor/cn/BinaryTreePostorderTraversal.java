@@ -7,7 +7,9 @@ package com.lenyan.leetcode.editor.cn;
 import com.lenyan.leetcode.editor.cn.model.TreeNode;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Stack;
 
 public class BinaryTreePostorderTraversal{
     public static void main(String[] args) {
@@ -32,22 +34,44 @@ public class BinaryTreePostorderTraversal{
  */
 class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
-        List<Integer> result = new ArrayList<Integer>();
-        preorder(root, result);
-        return result;
-    }
-
-    public void preorder(TreeNode root, List<Integer> result) {
-        if (root == null) {
-            return;
+        List<Integer> result = new ArrayList<>();
+        if (root == null){
+            return result;
         }
-        preorder(root.left, result);
-        preorder(root.right, result);
-        result.add(root.val);
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            TreeNode node = stack.pop();
+            result.add(node.val);
+            if (node.left != null){
+                stack.push(node.left);
+            }
+            if (node.right != null){
+                stack.push(node.right);
+            }
+        }
+        Collections.reverse(result);
+        return result;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
+    class Solution1 {
+        public List<Integer> postorderTraversal(TreeNode root) {
+            List<Integer> result = new ArrayList<Integer>();
+            preorder(root, result);
+            return result;
+        }
+
+        public void preorder(TreeNode root, List<Integer> result) {
+            if (root == null) {
+                return;
+            }
+            preorder(root.left, result);
+            preorder(root.right, result);
+            result.add(root.val);
+        }
+    }
     
 }
 

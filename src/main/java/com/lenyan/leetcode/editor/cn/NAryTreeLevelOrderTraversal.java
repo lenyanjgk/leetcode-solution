@@ -33,17 +33,23 @@ public class NAryTreeLevelOrderTraversal{
 
     class Solution {
         public List<List<Integer>> levelOrder(Node root) {
-            if (root == null) return Collections.emptyList();
+            if (root == null) return Collections.emptyList(); // 修复点：检查 root 是否为 null
             List<List<Integer>> ans = new ArrayList<>();
-            Queue<Node> q = new ArrayDeque<>();
-            q.add(root);
-            while (!q.isEmpty()) {
-                int n = q.size();
-                List<Integer> vals = new ArrayList<>(n); // 预分配空间
+            Queue<Node> queue = new ArrayDeque<>();
+            queue.add(root);
+            while (!queue.isEmpty()) {
+                int n = queue.size();
+                List<Integer> vals = new ArrayList<>(n);
                 while (n-- > 0) {
-                    Node node = q.poll();
+                    Node node = queue.poll();
                     vals.add(node.val);
-                    q.addAll(node.children);
+                    if (node.children != null) { // 修复点：检查 node.children 是否为 null
+                        for (Node child : node.children) {
+                            if (child != null) {
+                                queue.add(child);
+                            }
+                        }
+                    }
                 }
                 ans.add(vals);
             }

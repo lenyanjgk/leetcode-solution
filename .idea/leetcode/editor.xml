@@ -3,6 +3,17 @@
   <component name="LeetcodeEditor">
     <option name="projectConfig">
       <map>
+        <entry key="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/AverageOfLevelsInBinaryTree.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/doc/content/AverageOfLevelsInBinaryTree.md" />
+              <option name="frontendQuestionId" value="leetcode.cn637" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/AverageOfLevelsInBinaryTree.java" />
+              <option name="titleSlug" value="average-of-levels-in-binary-tree" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/BinaryTreeInorderTraversal.java">
           <value>
             <LeetcodeEditor>
@@ -11,6 +22,28 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/BinaryTreeInorderTraversal.java" />
               <option name="titleSlug" value="binary-tree-inorder-traversal" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/BinaryTreeLevelOrderTraversal.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/doc/content/BinaryTreeLevelOrderTraversal.md" />
+              <option name="frontendQuestionId" value="leetcode.cn102" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/BinaryTreeLevelOrderTraversal.java" />
+              <option name="titleSlug" value="binary-tree-level-order-traversal" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/BinaryTreeLevelOrderTraversalIi.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/doc/content/BinaryTreeLevelOrderTraversalIi.md" />
+              <option name="frontendQuestionId" value="leetcode.cn107" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/BinaryTreeLevelOrderTraversalIi.java" />
+              <option name="titleSlug" value="binary-tree-level-order-traversal-ii" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -33,6 +66,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/BinaryTreePreorderTraversal.java" />
               <option name="titleSlug" value="binary-tree-preorder-traversal" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/BinaryTreeRightSideView.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/doc/content/BinaryTreeRightSideView.md" />
+              <option name="frontendQuestionId" value="leetcode.cn199" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/lenyan/leetcode/editor/cn/BinaryTreeRightSideView.java" />
+              <option name="titleSlug" value="binary-tree-right-side-view" />
             </LeetcodeEditor>
           </value>
         </entry>

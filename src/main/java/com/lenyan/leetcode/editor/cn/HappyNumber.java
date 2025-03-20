@@ -15,14 +15,13 @@ public class HappyNumber{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean isHappy(int n) {
-        Set<Integer> record = new HashSet<>();
-        while(n != 1 && !record.contains(n)) {
-            record.add(n);
+        Set<Integer> set = new HashSet<>();
+        while(n != 1 && !set.contains(n)) {
+            set.add(n);
             n = getNext(n);
         }
-        return n==1;
+        return n == 1;
     }
-
     public int getNext(int n) {
         int i = 0;
         while(n != 0) {
@@ -31,7 +30,6 @@ class Solution {
             i += digit * digit;
         }
         return i;
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -15,19 +15,15 @@ public class ReverseWordsInAString{
     class Solution {
         public String reverseWords(String s) {
             String[] split = s.trim().split("\\s+");
-            for (int i = 0; i < split.length/2; i++) {
-                //反转：
+            for(int i = 0; i < split.length / 2; i++) {
                 String temp = split[i];
                 split[i] = split[split.length - 1 - i];
                 split[split.length - 1 - i] = temp;
             }
-
             return String.join(" ", split);
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
-
-
 }
 
 

@@ -10,33 +10,33 @@ public class LongestPalindromicSubstring{
     }
     
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-        public boolean isPalindromic(String s) {
-            int len = s.length();
-            for (int i = 0; i < len / 2; i++) {
-                if (s.charAt(i) != s.charAt(len - i - 1)) {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        // 暴力解法
+    public class Solution {
         public String longestPalindrome(String s) {
-            String ans = "";
-            int max = 0;
-            int len = s.length();
-            for (int i = 0; i < len; i++)
-                for (int j = i + 1; j <= len; j++) {
-                    String test = s.substring(i, j);
-                    if (isPalindromic(test) && test.length() > max) {
-                        ans = s.substring(i, j);
-                        max = Math.max(max, ans.length());
+            int n = s.length();
+            boolean[][] dp = new boolean[n][n];
+            int maxLen = 0;
+            int start = 0;
+
+            for (int i = n - 1; i >= 0; i--) {
+                for (int j = i; j < n; j++) {
+                    if (i == j) {
+                        dp[i][j] = true;
+                    } else if (j == i + 1) {
+                        dp[i][j] = s.charAt(i) == s.charAt(j);
+                    } else {
+                        dp[i][j] = s.charAt(i) == s.charAt(j) && dp[i + 1][j - 1];
+                    }
+
+                    if (dp[i][j] && (j - i + 1 > maxLen)) {
+                        maxLen = j - i + 1;
+                        start = i;
                     }
                 }
-            return ans;
+            }
+
+            return maxLen == 0 ? "" : s.substring(start, start + maxLen);
         }
-}
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
     

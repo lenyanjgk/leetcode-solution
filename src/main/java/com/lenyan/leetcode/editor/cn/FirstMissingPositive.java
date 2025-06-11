@@ -10,16 +10,16 @@ public class FirstMissingPositive{
            Solution solution = new FirstMissingPositive().new Solution();
       }
       //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int firstMissingPositive(int[] nums) {
-        Arrays.sort(nums);
-        int count = 1;
-        for(int i = 0; i < nums.length;i++)
-            if(nums[i] == count)
-                count++;
-        return count;
+    class Solution {
+        public int firstMissingPositive(int[] nums) {
+            Arrays.sort(nums);
+            int count = 1;
+            for(int i = 0; i < nums.length;i++)
+                if(nums[i] == count)
+                    count++;
+            return count;
+        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
   }

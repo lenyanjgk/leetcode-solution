@@ -4,40 +4,36 @@
 package com.lenyan.leetcode.editor.cn;
 
 
+import java.util.HashMap;
+
 public class RansomNote{
     public static void main(String[] args) {
         Solution solution = new RansomNote().new Solution();
     }
     
     //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public boolean canConstruct(String ransomNote, String magazine) {
-            // shortcut
-            if (ransomNote.length() > magazine.length()) {
-                return false;
-            }
-            // 定义一个哈希映射数组
-            int[] record = new int[26];
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        if (ransomNote.length() > magazine.length()) return false;
 
-            // 遍历
-            for(char c : magazine.toCharArray()){
-                record[c - 'a'] += 1;
-            }
-
-            for(char c : ransomNote.toCharArray()){
-                record[c - 'a'] -= 1;
-            }
-
-            // 如果数组中存在负数，说明ransomNote字符串中存在magazine中没有的字符
-            for(int i : record){
-                if(i < 0){
-                    return false;
-                }
-            }
-
-            return true;
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < magazine.length(); i++) {
+            char c = magazine.charAt(i);
+            map.put(c, map.getOrDefault(c, 0) + 1);
         }
+
+        for (int i = 0; i < ransomNote.length(); i++) {
+            char c = ransomNote.charAt(i);
+            if (!map.containsKey(c) || map.get(c) <= 0) {
+                return false; // 如果字符不存在或数量不足，返回 false
+            }
+            map.put(c, map.get(c) - 1); // 使用一个字符
+        }
+
+        return true;
     }
+}
+
 
 //leetcode submit region end(Prohibit modification and deletion)
 

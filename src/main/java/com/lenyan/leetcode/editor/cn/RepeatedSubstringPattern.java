@@ -12,6 +12,17 @@ public class RepeatedSubstringPattern{
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean repeatedSubstringPattern(String s) {
+            return (s + s).indexOf(s, 1) != s.length();
+        }
+    }
+//leetcode submit region end(Prohibit modification and deletion)
+
+    
+}
+
+/*
+class Solution {
+        public boolean repeatedSubstringPattern(String s) {
             if (s.equals("")) return false;
 
             int len = s.length();
@@ -37,11 +48,7 @@ public class RepeatedSubstringPattern{
             return false;
         }
     }
-//leetcode submit region end(Prohibit modification and deletion)
-
-    
-}
-
+ */
 
 ////给定一个非空的字符串
 // s ，检查是否可以通过由它的一个子串重复多次构成。 

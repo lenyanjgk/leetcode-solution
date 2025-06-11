@@ -9,21 +9,24 @@ public class LongestSubstringWithoutRepeatingCharacters {
     public static void main(String[] args) {
         Solution solution = new LongestSubstringWithoutRepeatingCharacters().new Solution();
         //pwwkew
-        System.out.println(solution.lengthOfLongestSubstring("pwwkew"));
+        System.out.println(solution.lengthOfLongestSubstring("abcabcbb"));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int lengthOfLongestSubstring(String s) {
-            Map<Character,Integer> ans = new HashMap<>();
-            int i = -1 ,res = 0;
-            for(int j = 0; j < s.length(); j++) {
-                if(ans.containsKey(s.charAt(j)))
-                    i = Math.max(i,ans.get(s.charAt(j)));
-                ans.put(s.charAt(j),j);
-                res = Math.max(res,j-i);
+            List<Character> list = new ArrayList();
+            int max = 0;
+            for (int i = 0; i < s.length(); i++) {
+                //如果集合中已包含了该字符，则从集合中删除该字符及之前的全部字符
+                while (list.contains(s.charAt(i))) {
+                    list.remove(0);
+                }
+                list.add(s.charAt(i));
+                //每次添加字符串，就重新判断最大长度
+                max = Math.max(max, list.size());
             }
-            return res;
+            return max;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

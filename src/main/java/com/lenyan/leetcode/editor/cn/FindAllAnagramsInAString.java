@@ -16,24 +16,19 @@ public class FindAllAnagramsInAString {
     class Solution {
         public List<Integer> findAnagrams(String s, String p) {
             int n = s.length(), m = p.length();
-            if(n < m) {
-                return new ArrayList<>();
+            if(n<m) return new ArrayList<>();
+            int[] cnt = new int[26];
+            int[] cntP = new int[26];
+            for(int i=0;i<m;i++){
+                cnt[s.charAt(i)-'a']++;
+                cntP[p.charAt(i)-'a']++;
             }
             List<Integer> ans = new ArrayList<>();
-            int [] cnt1 = new int[26], cnt2 = new int[26];
-            for(int i = 0; i < m; i++) {
-                cnt1[s.charAt(i) - 'a']++;
-                cnt2[p.charAt(i) - 'a']++;
-            }
-            if(Arrays.equals(cnt1, cnt2)) {
-                ans.add(0);
-            }
-            for(int i = 0; i < n - m; i++) {
-                cnt1[s.charAt(i) - 'a']--;
-                cnt1[s.charAt(i + m) - 'a']++;
-                if(Arrays.equals(cnt1, cnt2)) {
-                    ans.add(i + 1);
-                }
+            if(Arrays.equals(cnt,cntP)) ans.add(0);
+            for(int i=m;i<n;i++){
+                cnt[s.charAt(i)-'a']++;
+                cnt[s.charAt(i-m)-'a']--;
+                if(Arrays.equals(cnt,cntP)) ans.add(i-m+1);
             }
             return ans;
         }

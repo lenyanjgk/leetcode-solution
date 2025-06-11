@@ -9,21 +9,21 @@
       //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int subarraySum(int[] nums, int k) {
-        int len = nums.length;
-        int[] presum = new int[len + 1];
+        int n = nums.length;
+        int []presum = new int[n+1];
         presum[0] = 0;
-        for(int i = 1; i <= len; i++) {
-            presum[i] = presum[i - 1] + nums[i - 1];
+        for(int i = 0; i < n; i++) {
+            presum[i+1] = presum[i] + nums[i];
         }
-        int count = 0;
-        for(int i = 1; i <= len; i++) {
-            for(int j = 0; j < i; j++) {
-                if(presum[i] - presum[j] == k) {
-                    count++;
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = i+1; j <= n; j++) {
+                if (presum[j] - presum[i] == k) {
+                    ans++;
                 }
             }
         }
-        return count;
+        return ans;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

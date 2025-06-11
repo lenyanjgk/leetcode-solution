@@ -12,15 +12,7 @@ public class RemoveElement{
     //leetcode submit region begin(Prohibit modification and deletion)
     public class Solution {
         public int removeElement(int[] nums, int val) {
-            // 快慢指针
-            int slowIndex = 0;
-            for (int fastIndex = 0; fastIndex < nums.length; fastIndex++) {
-                if (nums[fastIndex] != val) {
-                    nums[slowIndex] = nums[fastIndex];
-                    slowIndex++;
-                }
-            }
-            return slowIndex;
+            int low = 0;for(int num : nums) if (num != val) nums[low++] = num;return low;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

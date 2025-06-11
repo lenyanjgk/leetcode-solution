@@ -10,6 +10,7 @@ public class ProductOfArrayExceptSelf {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        //左右乘积前缀和
         public int[] productExceptSelf(int[] nums) {
             int n = nums.length;
             int[] zuo = new int[n];

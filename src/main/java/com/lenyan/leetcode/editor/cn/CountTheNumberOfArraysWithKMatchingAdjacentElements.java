@@ -5,11 +5,10 @@ package com.lenyan.leetcode.editor.cn;
 
 public class CountTheNumberOfArraysWithKMatchingAdjacentElements {
     public static void main(String[] args) {
-        Solution solution = new CountTheNumberOfArraysWithKMatchingAdjacentElements().new Solution();
     }
 
         //leetcode submit region begin(Prohibit modification and deletion)
-        class Solution {
+        public static class Solution {
             private static final int MOD = 1_000_000_007;
             private static final int MX = 100_000; // 预计算最大值
 

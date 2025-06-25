@@ -1,0 +1,457 @@
+#### 方法一：枚举两个字符 + 双指针
+
+**思路与算法**
+
+由于字符串 $s$ 仅包含数字字符 $[0, 4]$，因此我们可以首先枚举题目描述中的字符 $a$ 和 $b$，其中 $a$ 需要出现奇数次，$b$ 需要出现偶数次，且 $a$ 和 $b$ 不相同。一个字符出现次数的奇偶性可以用一个二进制位表示，其中 $0$ 表示出现偶数次，$1$ 表示出现奇数次。将 $a$ 出现次数的奇偶性放置在前，$b$ 出现次数的奇偶性放置在后，就会有 $4$ 种不同的情况，即 $[00, 01, 10, 11]$，我们需要找到的字符串，必须对应着 $10$ 的情况。
+
+考虑使用双指针解决这个问题，右指针 $\textit{right}$ 每次向右移动一个位置，表示子字符串的右端点。在移动时，我们需要更新字符串到下标 $\textit{right}$ 为止的，字符 $a$ 和 $b$ 出现的次数 $\textit{cnt}_a$ 和 $\textit{cnt}_b$，对应的状态即为：
+
+$$
+\textit{status}_\textit{right} = (\textit{cnt}_a \bmod 2) \times 2 + (\textit{cnt}_b \bmod 2)
+$$
+
+同时，左指针 $\textit{left}$ 只会在满足要求时，才会向右移动一个位置。也就是说，只有下标小于等于 $\textit{left}$ 的位置，才能作为子字符串的左端点。我们用 $\textit{prev}_a$ 和 $\textit{prev}_b$ 记录到下标 $\textit{left}$ 为止的，字符 $a$ 和 $b$ 出现的次数，那么只有同时满足下面两个条件时，才会移动左指针：
+
+- $\textit{right} - \textit{left} \geq k$，即子字符串的长度至少为 $k$；
+- $\textit{cnt}_b - \textit{prev}_b \geq 2$，即字符 $b$ 需要出现偶数次，但需要排除出现 $0$ 次的情况。
+
+对于一个满足要求的左指针，它对应的答案是 $(\textit{cnt}_a - \textit{cnt}_b) - (\textit{prev}_a - \textit{prev}_b)$，因此我们需要用长度为 $4$ 的数组 $\textit{best}$ 来维护每一种情况下 $\textit{prev}_a - \textit{prev}_b$ 的**最小值**，即：
+
+$$
+\textit{status}_\textit{left} = (\textit{prev}_a \bmod 2) \times 2 + (\textit{prev}_b \bmod 2)
+$$
+
+并且会用 $\textit{prev}_a - \textit{prev}_b$ 的值去更新 $\textit{best}[\textit{status}_\textit{left}]$。
+
+在左指针移动完成后，我们就可以对当前的右指针计算答案了，由于我们需要一个情况为 $10$ 的子字符串，因此需要左端点的状态是 $\textit{status}_\textit{right} \oplus (10)_2$，其中 $\oplus$ 表示异或运算。这样一来，答案即为：
+
+$$
+(\textit{cnt}_a - \textit{cnt}_b) - \textit{best}[\textit{status}_\textit{right} \oplus (10)_2]
+$$
+
+最终的答案即为上述所有可能中的最大值。
+
+**代码**
+
+* [sol1-C++]
+
+```C++
+class Solution {
+public:
+    int maxDifference(string s, int k) {
+        auto getStatus = [](int cnt_a, int cnt_b) -> int {
+            return ((cnt_a & 1) << 1) | (cnt_b & 1);
+        };
+
+        int n = s.size();
+        int ans = INT_MIN;
+        for (char a = '0'; a <= '4'; ++a) {
+            for (char b = '0'; b <= '4'; ++b) {
+                if (a == b) {
+                    continue;
+                }
+                int best[4] = {INT_MAX, INT_MAX, INT_MAX, INT_MAX};
+                int cnt_a = 0, cnt_b = 0;
+                int prev_a = 0, prev_b = 0;
+                int left = -1;
+                for (int right = 0; right < n; ++right) {
+                    cnt_a += (s[right] == a);
+                    cnt_b += (s[right] == b);
+                    while (right - left >= k && cnt_b - prev_b >= 2) {
+                        int left_status = getStatus(prev_a, prev_b);
+                        best[left_status] = min(best[left_status], prev_a - prev_b);
+                        ++left;
+                        prev_a += (s[left] == a);
+                        prev_b += (s[left] == b);
+                    }
+                    int right_status = getStatus(cnt_a, cnt_b);
+                    if (best[right_status ^ 0b10] != INT_MAX) {
+                        ans = max(ans, cnt_a - cnt_b - best[right_status ^ 0b10]);
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+};
+```
+
+* [sol1-Python3]
+
+```Python
+class Solution:
+    def maxDifference(self, s: str, k: int) -> int:
+        def getStatus(cnt_a: int, cnt_b: int) -> int:
+            return ((cnt_a & 1) << 1) | (cnt_b & 1)
+        
+        n = len(s)
+        ans = float("-inf")
+        for a in ["0", "1", "2", "3", "4"]:
+            for b in ["0", "1", "2", "3", "4"]:
+                if a == b:
+                    continue
+                
+                best = [float("inf")] * 4
+                cnt_a = cnt_b = 0
+                prev_a = prev_b = 0
+                left = -1
+                for right in range(n):
+                    cnt_a += (s[right] == a)
+                    cnt_b += (s[right] == b)
+                    while right - left >= k and cnt_b - prev_b >= 2:
+                        left_status = getStatus(prev_a, prev_b)
+                        best[left_status] = min(best[left_status], prev_a - prev_b)
+                        left += 1
+                        prev_a += (s[left] == a)
+                        prev_b += (s[left] == b)
+                    
+                    right_status = getStatus(cnt_a, cnt_b)
+                    if best[right_status ^ 0b10] != float("inf"):
+                        ans = max(ans, cnt_a - cnt_b - best[right_status ^ 0b10])
+
+        return ans
+```
+
+* [sol1-Java]
+
+```Java
+class Solution {
+    public int maxDifference(String s, int k) {
+        int n = s.length();
+        int ans = Integer.MIN_VALUE;
+        for (char a = '0'; a <= '4'; ++a) {
+            for (char b = '0'; b <= '4'; ++b) {
+                if (a == b) {
+                    continue;
+                }
+                int[] best = new int[4];
+                Arrays.fill(best, Integer.MAX_VALUE);
+                int cnt_a = 0, cnt_b = 0;
+                int prev_a = 0, prev_b = 0;
+                int left = -1;
+                
+                for (int right = 0; right < n; ++right) {
+                    cnt_a += (s.charAt(right) == a) ? 1 : 0;
+                    cnt_b += (s.charAt(right) == b) ? 1 : 0;
+                    
+                    while (right - left >= k && cnt_b - prev_b >= 2) {
+                        int left_status = getStatus(prev_a, prev_b);
+                        best[left_status] = Math.min(best[left_status], prev_a - prev_b);
+                        ++left;
+                        prev_a += (s.charAt(left) == a) ? 1 : 0;
+                        prev_b += (s.charAt(left) == b) ? 1 : 0;
+                    }
+                    
+                    int right_status = getStatus(cnt_a, cnt_b);
+                    if (best[right_status ^ 0b10] != Integer.MAX_VALUE) {
+                        ans = Math.max(ans, cnt_a - cnt_b - best[right_status ^ 0b10]);
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+    
+    private int getStatus(int cnt_a, int cnt_b) {
+        return ((cnt_a & 1) << 1) | (cnt_b & 1);
+    }
+}
+```
+
+* [sol1-C#]
+
+```C#
+public class Solution {
+    public int MaxDifference(string s, int k) {
+        int n = s.Length;
+        int ans = int.MinValue;
+        foreach (char a in new char[]{'0', '1', '2', '3', '4'}) {
+            foreach (char b in new char[]{'0', '1', '2', '3', '4'}) {
+                if (a == b) {
+                    continue;
+                }
+                int[] best = new int[4];
+                Array.Fill(best, int.MaxValue);
+                int cntA = 0, cntB = 0;
+                int prevA = 0, prevB = 0;
+                int left = -1;
+                for (int right = 0; right < n; right++) {
+                    if (s[right] == a) {
+                        cntA++;
+                    }
+                    if (s[right] == b) {
+                        cntB++;
+                    }
+                    while (right - left >= k && cntB - prevB >= 2) {
+                        int leftStatus = GetStatus(prevA, prevB);
+                        best[leftStatus] = Math.Min(best[leftStatus], prevA - prevB);
+                        left++;
+                        if (s[left] == a) {
+                            prevA++;
+                        }
+                        if (s[left] == b) {
+                            prevB++;
+                        }
+                    }
+                    int rightStatus = GetStatus(cntA, cntB);
+                    if (best[rightStatus ^ 0b10] != int.MaxValue) {
+                        ans = Math.Max(ans, (cntA - cntB) - best[rightStatus ^ 0b10]);
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+    
+    private int GetStatus(int cntA, int cntB) {
+        return ((cntA & 1) << 1) | (cntB & 1);
+    }
+}
+```
+
+* [sol1-Go]
+
+```Go
+func maxDifference(s string, k int) int {
+	n := len(s)
+	ans := math.MinInt32
+	for _, a := range []byte{'0', '1', '2', '3', '4'} {
+		for _, b := range []byte{'0', '1', '2', '3', '4'} {
+			if a == b {
+				continue
+			}
+			best := make([]int, 4)
+			for i := range best {
+				best[i] = math.MaxInt32
+			}
+			cntA, cntB := 0, 0
+			prevA, prevB := 0, 0
+			left := -1
+			for right := 0; right < n; right++ {
+				if s[right] == a {
+					cntA++
+				}
+				if s[right] == b {
+					cntB++
+				}
+				for right-left >= k && cntB-prevB >= 2 {
+					leftStatus := getStatus(prevA, prevB)
+					if prevA-prevB < best[leftStatus] {
+						best[leftStatus] = prevA - prevB
+					}
+					left++
+					if s[left] == a {
+						prevA++
+					}
+					if s[left] == b {
+						prevB++
+					}
+				}
+				rightStatus := getStatus(cntA, cntB)
+				if best[rightStatus ^ 0b10] != math.MaxInt32 {
+					current := (cntA - cntB) - best[rightStatus ^ 0b10]
+					if current > ans {
+						ans = current
+					}
+				}
+			}
+		}
+	}
+	return ans
+}
+
+func getStatus(cntA, cntB int) int {
+	return ((cntA & 1) << 1) | (cntB & 1)
+}
+```
+
+* [sol1-C]
+
+```C
+int getStatus(int cnt_a, int cnt_b) {
+    return ((cnt_a & 1) << 1) | (cnt_b & 1);
+}
+
+int maxDifference(char* s, int k) {
+    int n = strlen(s);
+    int ans = INT_MIN;
+
+    for (char a = '0'; a <= '4'; ++a) {
+        for (char b = '0'; b <= '4'; ++b) {
+            if (a == b) {
+                continue;
+            }
+            int best[4] = {INT_MAX, INT_MAX, INT_MAX, INT_MAX};
+            int cnt_a = 0, cnt_b = 0;
+            int prev_a = 0, prev_b = 0;
+            int left = -1;
+            for (int right = 0; right < n; ++right) {
+                cnt_a += (s[right] == a) ? 1 : 0;
+                cnt_b += (s[right] == b) ? 1 : 0;
+                
+                while (right - left >= k && cnt_b - prev_b >= 2) {
+                    int left_status = getStatus(prev_a, prev_b);
+                    if (prev_a - prev_b < best[left_status]) {
+                        best[left_status] = prev_a - prev_b;
+                    }
+                    ++left;
+                    prev_a += (s[left] == a) ? 1 : 0;
+                    prev_b += (s[left] == b) ? 1 : 0;
+                }
+                
+                int right_status = getStatus(cnt_a, cnt_b);
+                if (best[right_status ^ 0b10] != INT_MAX) {
+                    int current = cnt_a - cnt_b - best[right_status ^ 0b10];
+                    if (current > ans) {
+                        ans = current;
+                    }
+                }
+            }
+        }
+    }
+    
+    return ans;
+}
+```
+
+* [sol1-JavaScript]
+
+```JavaScript
+var maxDifference = function(s, k) {
+    const n = s.length;
+    let ans = -Infinity;
+    
+    const getStatus = (cnt_a, cnt_b) => {
+        return ((cnt_a & 1) << 1) | (cnt_b & 1);
+    };
+    
+    for (const a of ['0', '1', '2', '3', '4', '5']) {
+        for (const b of ['0', '1', '2', '3', '4', '5']) {
+            if (a === b) {
+                continue;
+            }
+            const best = [Infinity, Infinity, Infinity, Infinity];
+            let cnt_a = 0, cnt_b = 0;
+            let prev_a = 0, prev_b = 0;
+            let left = -1;
+            
+            for (let right = 0; right < n; right++) {
+                cnt_a += s[right] === a ? 1 : 0;
+                cnt_b += s[right] === b ? 1 : 0;
+                
+                while (right - left >= k && cnt_b - prev_b >= 2) {
+                    const left_status = getStatus(prev_a, prev_b);
+                    best[left_status] = Math.min(best[left_status], prev_a - prev_b);
+                    left++;
+                    prev_a += s[left] === a ? 1 : 0;
+                    prev_b += s[left] === b ? 1 : 0;
+                }
+                
+                const right_status = getStatus(cnt_a, cnt_b);
+                if (best[right_status ^ 0b10] !== Infinity) {
+                    ans = Math.max(ans, cnt_a - cnt_b - best[right_status ^ 0b10]);
+                }
+            }
+        }
+    }
+    return ans;
+};
+```
+
+* [sol1-TypeScript]
+
+```TypeScript
+function maxDifference(s: string, k: number): number {
+    const n = s.length;
+    let ans = -Infinity;
+    
+    const getStatus = (cnt_a: number, cnt_b: number): number => {
+        return ((cnt_a & 1) << 1) | (cnt_b & 1);
+    };
+    
+    for (const a of ['0', '1', '2', '3', '4', '5']) {
+        for (const b of ['0', '1', '2', '3', '4', '5']) {
+            if (a === b) {
+                continue;
+            }
+            const best: number[] = [Infinity, Infinity, Infinity, Infinity];
+            let cnt_a = 0, cnt_b = 0;
+            let prev_a = 0, prev_b = 0;
+            let left = -1;
+            for (let right = 0; right < n; right++) {
+                cnt_a += s[right] === a ? 1 : 0;
+                cnt_b += s[right] === b ? 1 : 0;
+                
+                while (right - left >= k && cnt_b - prev_b >= 2) {
+                    const left_status = getStatus(prev_a, prev_b);
+                    best[left_status] = Math.min(best[left_status], prev_a - prev_b);
+                    left++;
+                    prev_a += s[left] === a ? 1 : 0;
+                    prev_b += s[left] === b ? 1 : 0;
+                }
+                
+                const right_status = getStatus(cnt_a, cnt_b);
+                if (best[right_status ^ 0b10] !== Infinity) {
+                    ans = Math.max(ans, cnt_a - cnt_b - best[right_status ^ 0b10]);
+                }
+            }
+        }
+    }
+    return ans;
+}
+```
+
+* [sol1-Rust]
+
+```Rust
+impl Solution {
+    pub fn max_difference(s: String, k: i32) -> i32 {
+        let n = s.len();
+        let mut ans = i32::MIN;
+        let chars: Vec<char> = s.chars().collect();
+        
+        fn get_status(cnt_a: i32, cnt_b: i32) -> i32 {
+            ((cnt_a & 1) << 1) | (cnt_b & 1)
+        }
+        
+        for a in ['0', '1', '2', '3', '4', '5'] {
+            for b in ['0', '1', '2', '3', '4', '5'] {
+                if a == b { 
+                    continue; 
+                }
+                
+                let mut best = [i32::MAX; 4];
+                let (mut cnt_a, mut cnt_b) = (0, 0);
+                let (mut prev_a, mut prev_b) = (0, 0);
+                let mut left = -1;
+                
+                for right in 0..n {
+                    cnt_a += if chars[right] == a { 1 } else { 0 };
+                    cnt_b += if chars[right] == b { 1 } else { 0 };
+                    
+                    while (right as i32 - left) >= k && (cnt_b - prev_b) >= 2 {
+                        let left_status = get_status(prev_a, prev_b) as usize;
+                        best[left_status] = best[left_status].min(prev_a - prev_b);
+                        left += 1;
+                        prev_a += if chars[left as usize] == a { 1 } else { 0 };
+                        prev_b += if chars[left as usize] == b { 1 } else { 0 };
+                    }
+                    
+                    let right_status = get_status(cnt_a, cnt_b) as usize;
+                    if best[right_status ^ 0b10] != i32::MAX {
+                        ans = ans.max(cnt_a - cnt_b - best[right_status ^ 0b10]);
+                    }
+                }
+            }
+        }
+        ans
+    }
+}
+```
+
+**复杂度分析**
+
+- 时间复杂度：$O(n\times|\Sigma|^2)$，其中 $n$ 是字符串 $s$ 的长度，$\Sigma$ 是字符集，在本题中 $s$ 只包含数字 $[0, 4]$，因此 $|\Sigma| = 5$。枚举字符 $a$ 和 $b$ 需要的时间为 $O(|\Sigma|^2)$，每一次枚举需要使用双指针 $\textit{left}$ 和 $\textit{right}$ 计算答案，两个指针分别会遍历整个字符串 $s$ 一次，时间复杂度为 $O(n)$。
+
+- 空间复杂度：$O(1)$。
+

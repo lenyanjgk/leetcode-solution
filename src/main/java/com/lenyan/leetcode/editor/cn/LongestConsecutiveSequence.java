@@ -4,6 +4,8 @@
 package com.lenyan.leetcode.editor.cn;
 
 
+import cn.hutool.core.lang.hash.Hash;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,20 +17,20 @@ public class LongestConsecutiveSequence{
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int longestConsecutive(int[] nums) {
-            Set<Integer> ans = new HashSet<>();
             int max = 0;
-            for (int i : nums) {
-                ans.add(i);
+            Set<Integer> set = new HashSet<>();
+            for(int i : nums) {
+                set.add(i);
             }
-            for (int i : nums) {
-                if(ans.contains(i-1)) {
+            for (int i : set) {
+                if(set.contains(i - 1)) {
                     continue;
                 }
-                int y = i + 1;
-                while(ans.contains(y)) {
-                    y++;
+                int count = i + 1;
+                while(set.contains(count)) {
+                    count++;
                 }
-                max = Math.max(max,y - i);
+                max = Math.max(max, count - i);
             }
             return max;
         }

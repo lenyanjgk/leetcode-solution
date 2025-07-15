@@ -18,9 +18,9 @@ class Solution {
     // 最大需求量（题目限制n<=30）
     private static final int MAX_N = 30;
     // 存储各进制(k)对应的结果列表（k∈[2,9]）
-    private static final List<Long>[] ans = new ArrayList[10];
+    private final List<Long>[] ans = new ArrayList[10];
     // 初始化标记
-    private static boolean initialized = false;
+    private boolean initialized = false;
 
     // 延迟初始化方法（替代静态代码块，提升性能）
     private void init() {
